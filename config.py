@@ -14,3 +14,6 @@ PASSWORD_SALT = "randomletters"
 LANGUAGE = "de_DE"
 #the language system passes this string if it cannot find the default string for the specified language.
 DEFAULT_STRING = "There should a a string here, but we couldn't read it from the language file database. Please report this to the devs at https://github.com/9hax/simpleticket"
+
+#site name that is displayed in multiple places
+SITE_NAME = "SimpleTicket Development Instance"

@@ -1,0 +1,17 @@
+[
+    {
+        "name" : "ticketadmin",
+        "fullname" : "Ticketsystem-Administrator",
+        "authhash" : ""
+     } ,
+    {
+        "name" : "ticketuser",
+        "fullname" : "Ticketsystem-Benutzer",
+        "authhash" : ""
+    }, 
+    {
+        "name" : "helper",
+        "fullname" : "Helper-Benutzer",
+        "authhash" : ""
+    }
+]

@@ -6,10 +6,6 @@ INTERFACE_PORT = "80"
 #require login for reading and writing to tickets and to create new tickets?
 REQUIRE_LOGIN = True
 
-#the password salt used to salt the hashes for the database.
-# warning! changing the password salt will make all passwords in the system invalid.
-PASSWORD_SALT = "randomletters" 
-
 #language that the web interface for simpleticket uses. en_EN is default.
 LANGUAGE = "de_DE"
 #the language system passes this string if it cannot find the default string for the specified language.

@@ -156,22 +156,23 @@
       <div id="cube" class="show-front">
         <figure class="front">
           <div class="mdl-card mdl-shadow--6dp">
-            <form action="" method="POST">
-              <div class="mdl-card__title mdl-color--primary mdl-color-text--white relative">
-                <h2 class="mdl-card__title-text">{{lang["login-title"]}}</h2>
-              </div>
+            <div class="mdl-card__title mdl-color--primary mdl-color-text--white relative">
+              <!--a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="/">
+                <i class="material-icons">arrow_back</i>
+              </a-->
+              <h2 class="mdl-card__title-text">{{lang["password-lost"]}}</h2>
+            </div>
 
+            <form action="" method="post">
               <div class="mdl-card__supporting-text">
-                {% if message %}
+                <p>{% if message %}
                   {{message}}
-                {% endif %}
+                  {% else %}
+                  {{lang["password-lost-description"]}}</p>
+                  {% endif %}
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" id="login" name="login"/>
-                  <label class="mdl-textfield__label" for="login">{{lang["username"]}}</label>
-                </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="password" id="password" name="password"/>
-                  <label class="mdl-textfield__label" for="password">{{lang["password"]}}</label>
+                  <input class="mdl-textfield__input" type="email" id="email" name="email"/>
+                  <label class="mdl-textfield__label" for="email">{{lang["email-address"]}}</label>
                 </div>
               </div>
 
@@ -179,46 +180,16 @@
                 <div class="mdl-grid">
                   <button type="submit"
                     class="mdl-cell mdl-cell--12-col mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
-                    {{lang["login"]}}
+                    {{lang["password-reset"]}}
                   </button>
-
                 </div>
-
                 <div class="mdl-grid">
                   <div class="mdl-cell mdl-cell--12-col">
-                    <a href="/pwreset" class="mdl-color-text--primary"
-                      style="float: right">{{lang["password-lost"]}}</a>
+                    <a href="/" class="mdl-color-text--primary" style="float: left">{{lang["back"]}}</a>
                   </div>
                 </div>
               </div>
             </form>
-          </div>
-        </figure>
-        <figure class="bottom">
-          <div class="mdl-card mdl-shadow--6dp">
-            <div class="mdl-card__title mdl-color--primary mdl-color-text--white relative">
-              <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" onClick='flip("show-front")'>
-                <i class="material-icons">arrow_back</i>
-              </a>
-              <h2 class="mdl-card__title-text">Lost Password</h2>
-            </div>
-
-
-            <div class="mdl-card__supporting-text">
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="email" id="email" />
-                <label class="mdl-textfield__label" for="email">E-Mail</label>
-              </div>
-            </div>
-
-            <div class="mdl-card__actions mdl-card--border">
-              <div class="mdl-grid">
-                <button
-                  class="mdl-cell mdl-cell--12-col mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
-                  Reset Password
-                </button>
-              </div>
-            </div>
           </div>
         </figure>
       </div>

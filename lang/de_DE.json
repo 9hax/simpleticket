@@ -1,0 +1,13 @@
+{
+    "login-title": "Login für das Ticketsystem",
+    "username": "Benutzername",
+    "password": "Passwort",
+    "login": "Login",
+    "password-lost": "Passwort vergessen",
+    "password-lost-description":"Sie haben Ihr Passwort vergessen? Einfach Ihre Email hier eintragen und Sie bekommen einen Rücksetz-Link zugesendet.",
+    "email-address":"EMail-Adresse",
+    "password-reset": "Passwort zurücksetzen",
+    "password-reset-form-message": "Falls Sie eine registrierte EMail-Adresse eingegeben haben, werden Sie in kürze eine EMail mit einem Rücksetz-Link erhalten.",
+    "back":"Zurück",
+    "login-error": "Falsche Login-Daten."
+}

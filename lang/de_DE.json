@@ -9,5 +9,20 @@
     "password-reset": "Passwort zurücksetzen",
     "password-reset-form-message": "Falls Sie eine registrierte EMail-Adresse eingegeben haben, werden Sie in kürze eine EMail mit einem Rücksetz-Link erhalten.",
     "back":"Zurück",
-    "login-error": "Falsche Login-Daten."
+    "login-error": "Falsche Login-Daten.",
+    "ticket": "Ticket",
+    "tickets": "Tickets",
+    "accounts": "Benutzer",
+    "logout": "Logout",
+    "home": "Startseite",
+    "create-ticket": "Ticket erstellen",
+    "faq":"FAQ",
+    "about":"Über SimpleTicket",
+    "about-text":"SimpleTicket ist ein einfaches Ticketsystem mit sehr kleinen Leistungsanforderungen und schnellen Ladezeiten für Teams aller Größen.<br>SimpleTicket hat eine Apache OpenSource Lizenz. Für mehr Informationen besuchen Sie bitte die GitHub-Seite des Projektes.",
+    "visit-github": "GitHub-Seite öffnen",
+    "open-tickets": "Offene Tickets",
+    "closed-tickets": "Geschlossene Tickets",
+    "404error-title": "404-Fehler",
+    "404error-description": "Diese Seite existiert nicht.",
+    "return-home": "Zurück zur Startseite"
 }

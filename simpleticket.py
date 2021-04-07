@@ -19,9 +19,17 @@ def global_template_vars():
         "lang": lang
     }
 
+@app.errorhandler(404)
+def pnf(e):
+    return render_template('404error.html')
+
 @app.route('/')
 def home():
     return render_template('index.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

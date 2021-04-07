@@ -1,0 +1,14 @@
+{% set title = lang["about"] %}
+{% extends "master.html" %}
+{% block body %}
+<div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
+  <p>
+    {{lang["about-text"] | safe}}
+
+  </p>
+  <a href="http://github.com/9hax/simpleticket">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      {{lang["visit-github"]}}
+    </button></a>
+</div>
+{% endblock %}

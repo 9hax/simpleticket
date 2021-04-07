@@ -1,9 +1,10 @@
-{% set title = lang["home"] %}
+{% set title = lang["404error-title"] %}
 {% extends "master.html" %}
 {% block body %}
 <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
   <p>
-    {{lang["open-tickets"]}}
+    {{lang["404error-description"]}}
   </p>
+  <a href="/">{{lang["return-home"]}}</a>
 </div>
 {% endblock %}

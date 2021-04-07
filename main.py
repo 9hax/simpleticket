@@ -1,1 +1,0 @@
-from simpleticket import app

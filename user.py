@@ -14,3 +14,13 @@ def verify_login(u, p):
 
 def get_user(id):
     return m.User.query.get(id)
+
+def create_user(username, email, password, passwordResetTimer = -1, highPermissionLevel = 0):
+    new_user = m.User()
+    new_user.username = username
+    new_user.email = email
+    new_user.password = password
+    new_user.passwordResetTimer = passwordResetTimer
+    new_user.highPermissionLevel = highPermissionLevel
+    m.db.session.add(new_user)
+    m.db.session.commit()

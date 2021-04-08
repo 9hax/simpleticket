@@ -27,5 +27,11 @@
     "404error-description": "Diese Seite existiert nicht.",
     "403error-title": "403-Fehler",
     "403error-description": "Sie haben keinen Zugriff auf diese Seite.",
-    "return-home": "Zurück zur Startseite"
+    "return-home": "Zurück zur Startseite",
+    "user-signup-text": "Es wird ein neuer Benutzer mit dem folgendem Permission-Level erstellt:",
+    "user-signup-title": "Benutzer erstellen",
+    "create": "Erstellen",
+    "user-create-error": "Der Benutzer kann nicht erstellt werden. Ist der Benutzername bereits vorhanden?",
+    "low-perms": "Standardbenutzer",
+    "high-perms": "Administrator"
 }

@@ -4,10 +4,10 @@
 # Handle Imports
 from flask import *
 from flask_migrate import Migrate
-
+import sqlalchemy
 import models as m
 
-import config, json, user, git
+import config, json, user, git, sys, os
 
 # prepare language files
 
@@ -25,17 +25,21 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 m.db.init_app(app)
 Migrate(app, m.db)
 
+# make some variables available to the main script
+@app.before_request
+def initializeRequest():
+    g.current_user = None
+    if "login" in session.keys() and session['login']:
+        g.current_user = user.get_user(session['acc_id'])
+
 # make some variables available to the templating engine
 @app.context_processor
 def global_template_vars():
-    current_user = None
-    if "login" in session.keys() and session['login']:
-        current_user = user.get_user(session['acc_id'])
     return {
         "sitename": config.SITE_NAME,
         "lang": lang,
         "stversion": version,
-        "current_user": current_user
+        "current_user": g.current_user
     }
 
 # set a custom 404 error page to make the web app pretty
@@ -89,3 +93,29 @@ def resetPW():
         message = lang['password-reset-form-message']
         user.resetpw(request.form["email"])
     return render_template('pwreset.html', message = message)
+
+@app.route('/add-admin', methods=['GET', 'POST'])
+def addAdmin():
+    if os.path.exists(config.CREATE_ADMIN_FILE):
+        if request.method == 'POST':
+            try:
+                user.create_user(request.form["username"], request.form["email"], user.hashPassword(request.form["password"]), highPermissionLevel=True)
+            except sqlalchemy.exc.IntegrityError:
+                return render_template('user-signup.html', perms = lang["high-perms"], message = lang["user-create-error"])
+            return redirect(url_for('login'))
+        return render_template('user-signup.html', perms = lang["high-perms"])
+    else:
+        abort(403)
+
+@app.route('/add-user', methods=['GET', 'POST'])
+def addUser():
+    if "login" in session.keys() and session['login'] and g.current_user.highPermissionLevel:
+        if request.method == 'POST':
+            try:
+                user.create_user(request.form["username"], request.form["email"], user.hashPassword(request.form["password"]), highPermissionLevel=False)
+            except sqlalchemy.exc.IntegrityError:
+                return render_template('user-signup.html', perms = lang["low-perms"], message = lang["user-create-error"])
+            return redirect(url_for('login'))
+        return render_template('user-signup.html', perms = lang["low-perms"])
+    else:
+        abort(403)

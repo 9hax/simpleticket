@@ -25,5 +25,7 @@
     "closed-tickets": "Geschlossene Tickets",
     "404error-title": "404-Fehler",
     "404error-description": "Diese Seite existiert nicht.",
+    "403error-title": "403-Fehler",
+    "403error-description": "Sie haben keinen Zugriff auf diese Seite.",
     "return-home": "Zurück zur Startseite"
 }

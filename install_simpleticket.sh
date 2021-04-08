@@ -41,8 +41,18 @@ sudo cp /opt/simpleticket/simpleticket.conf /etc/apache2/sites-available
 sudo a2ensite simpleticket.conf
 
 # Reload apache2 web server to make site available
-sudo service apache2 restart
+sudo service apache2 stop
 
+####################
+# Begin Flask init #
+####################
 
+# Start database migrations
+flask db upgrade
 
+#################
+# Start website #
+#################
 
+# Start apache2
+sudo service apache2 start

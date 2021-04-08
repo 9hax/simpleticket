@@ -55,7 +55,13 @@ def pnf(e):
 # the index and landing page. this displays all the active and closed tickets.
 @app.route('/')
 def home():
-    return render_template('index.html')
+    if config.REQUIRE_LOGIN:
+        if "login" in session.keys() and session['login']:
+            return render_template('index.html')
+        else:
+            return redirect(url_for("login"))
+    else: 
+        return render_template("index.html")
 
 # the about page. this shows the current software version and some general information about SimpleTicket.
 @app.route('/about')

@@ -3,20 +3,32 @@
 # this uses the flask framework
 
 from flask import *
-import config, json, user
+from flask_migrate import Migrate
+import config, json, user, git
+
+from models import db
 
 # prepare language files
 
 with open("lang/"+config.LANGUAGE+".json",'r',encoding="utf-8") as langfile:
     lang = json.load(langfile)
 
+# get current git commit version
+
+version = git.Repo(search_parent_directories=True).head.object.hexsha[0:7]
+
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///simpleticket.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+Migrate(app, db)
 
 @app.context_processor
 def global_template_vars():
     return {
         "sitename": config.SITE_NAME,
-        "lang": lang
+        "lang": lang,
+        "stversion": version
     }
 
 @app.errorhandler(404)
@@ -50,5 +62,5 @@ def resetPW():
     message = None
     if request.method == 'POST':
         message = lang['password-reset-form-message']
-        #user.resetpw(request.form["email"])
+        user.resetpw(request.form["email"])
     return render_template('pwreset.html', message = message)

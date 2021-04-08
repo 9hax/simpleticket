@@ -16,5 +16,8 @@ class Ticket(db.Model):
     title = db.Column(db.String(512), unique=False, nullable=True)
     text = db.Column(db.Text, unique=False, nullable=False)
     media = db.Column(db.Text, unique=False, nullable=True) #This contains base64'ed binary images and videos in a python list.
-    createdby = # relationship to one person, nullable false, unique false
-    assignedto = # relationship to one person, nullable true, unique false
+    created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    assigned_to_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+
+    created_by = db.relationship('User', backref='tickets_created_by', foreign_keys=[created_by_id])
+    assigned_to = db.relationship('User', backref='tickets_assigned_to', foreign_keys=[assigned_to_id])

@@ -6,7 +6,7 @@ from flask import *
 from flask_migrate import Migrate
 import config, json, user, git
 
-#from models import db
+from models import db
 
 # prepare language files
 
@@ -18,10 +18,10 @@ with open("lang/"+config.LANGUAGE+".json",'r',encoding="utf-8") as langfile:
 version = git.Repo(search_parent_directories=True).head.object.hexsha[0:7]
 
 app = Flask(__name__)
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///simpleticket.db'
-#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-#db.init_app(app)
-#Migrate(app, db)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///simpleticket.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+Migrate(app, db)
 
 # make some variables available to the templating engine
 @app.context_processor

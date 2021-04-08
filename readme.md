@@ -24,4 +24,14 @@ It will also disable the default apache2 welcome page which runs on port 80 to s
 
 Just open the Web interface at Port 80! 
 If your Hostname is ticket, the url would be http://ticket:80.
-The rest of the process should be very simple to understand.
+
+## Creating the first Admin User
+
+To create an admin user, just visit /add-admin to open a signup form.
+
+To enable this functionality, firstly create a file at /opt/simpleticket/_CREATE_ADMIN_ALLOWED . 
+This path can be changed in config.py.
+
+## Creating normal users
+
+To create a normal user, visit /add-user while logged in as an admin.

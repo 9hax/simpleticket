@@ -25,3 +25,6 @@ LANGUAGE = "de_DE"
 
 # Site Name (Displayed in header, title, about page...)
 SITE_NAME = "SimpleTicket Development Instance"
+
+# Needed for sessions
+SECRET_KEY = 'm-_2hz7kJL-oOHtwKkI5ew'

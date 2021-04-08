@@ -4,9 +4,10 @@
 # Handle Imports
 from flask import *
 from flask_migrate import Migrate
-import config, json, user, git
 
-from models import db
+import models as m
+
+import config, json, user, git
 
 # prepare language files
 
@@ -18,18 +19,23 @@ with open("lang/"+config.LANGUAGE+".json",'r',encoding="utf-8") as langfile:
 version = git.Repo(search_parent_directories=True).head.object.hexsha[0:7]
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = config.SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///simpleticket.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(app)
-Migrate(app, db)
+m.db.init_app(app)
+Migrate(app, m.db)
 
 # make some variables available to the templating engine
 @app.context_processor
 def global_template_vars():
+    current_user = None
+    if session['login']:
+        current_user = user.get_user(session['acc_id'])
     return {
         "sitename": config.SITE_NAME,
         "lang": lang,
-        "stversion": version
+        "stversion": version,
+        "current_user": current_user
     }
 
 # set a custom 404 error page to make the web app pretty
@@ -52,7 +58,11 @@ def about():
 def login():
     message = None
     if request.method == 'POST':
-        if request.form["login"] == 'test-user':
+        username = request.form["login"]
+        password = request.form["password"]
+        if acc := user.verify_login(username, password):
+            session['login'] = True
+            session['acc_id'] = acc.id
             return redirect(url_for('home'))
         else: 
             message = lang["login-error"]
@@ -61,7 +71,9 @@ def login():
 # provide a logout url. we dont want users to get stuck logged in :)
 @app.route('/logout')
 def logout():
-    return 'notimplemented'
+    session['login'] = False
+    session['acc_id'] = None
+    return redirect(url_for('home'))
 
 # the password reset page to enable the users to reset their own password, provided they know their own email address.
 @app.route('/pwreset', methods=['GET', 'POST'])

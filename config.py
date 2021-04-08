@@ -1,15 +1,27 @@
+###################################
+# SIMPLETICKET CONFIGURATION FILE #
+###################################
+
+###############################################
+# Flask Development Environment Configuration #
+###############################################
+# This is not used when using the WSGI mod for apache.
+
 # interface ip and port number to launch the ticket system on.
 # setting 0.0.0.0 as the interface ip exposes the flask host on all available interfaces.
 INTERFACE_IP = "0.0.0.0"
 INTERFACE_PORT = "80"
 
-#require login for reading and writing to tickets and to create new tickets?
+######################################
+# General SimpleTicket Configuration #
+######################################
+
+# Require login for reading tickets?
 REQUIRE_LOGIN = True
 
-#language that the web interface for simpleticket uses. en_EN is default.
+# Language file that is used for the web interface.
+# The language file has .json as a file format and is located in the lang directory at the simpleticket install path root.
 LANGUAGE = "de_DE"
-#the language system passes this string if it cannot find the default string for the specified language.
-DEFAULT_STRING = "There should a a string here, but we couldn't read it from the language file database. Please report this to the devs at https://github.com/9hax/simpleticket"
 
-#site name that is displayed in multiple places
+# Site Name (Displayed in header, title, about page...)
 SITE_NAME = "SimpleTicket Development Instance"

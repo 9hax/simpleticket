@@ -60,7 +60,8 @@ def login():
     if request.method == 'POST':
         username = request.form["login"]
         password = request.form["password"]
-        if acc := user.verify_login(username, password):
+        acc = user.verify_login(username, password)
+        if acc:
             session['login'] = True
             session['acc_id'] = acc.id
             return redirect(url_for('home'))

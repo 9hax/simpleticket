@@ -23,5 +23,5 @@ It will also disable the default apache2 welcome page which runs on port 80 to s
 ## Usage
 
 Just open the Web interface at Port 80! 
-If your Hostname is ticket, the url would be (```http://ticket:80```)[http://ticket:80].
+If your Hostname is ticket, the url would be http://ticket:80.
 The rest of the process should be very simple to understand.

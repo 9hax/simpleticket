@@ -29,7 +29,7 @@ Migrate(app, m.db)
 @app.context_processor
 def global_template_vars():
     current_user = None
-    if session['login']:
+    if "login" in session.keys() and session['login']:
         current_user = user.get_user(session['acc_id'])
     return {
         "sitename": config.SITE_NAME,

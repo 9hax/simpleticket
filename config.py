@@ -16,7 +16,8 @@ INTERFACE_PORT = "80"
 # General SimpleTicket Configuration #
 ######################################
 
-# Require login for reading tickets?
+# Require login for opening the home page?
+# This will automatically redirect to login if not logged in already.
 REQUIRE_LOGIN = True
 
 # Language file that is used for the web interface.

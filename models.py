@@ -14,6 +14,7 @@ class User(db.Model):
 class Ticket(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(512), unique=False, nullable=True)
+    is_open = db.Column(db.Boolean, unique=False, nullable = False, default= True)
     text = db.Column(db.Text, unique=False, nullable=False)
     media = db.Column(db.Text, unique=False, nullable=True) #This contains base64'ed binary images and videos in a python list.
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -21,3 +22,13 @@ class Ticket(db.Model):
 
     created_by = db.relationship('User', backref='tickets_created_by', foreign_keys=[created_by_id])
     assigned_to = db.relationship('User', backref='tickets_assigned_to', foreign_keys=[assigned_to_id])
+
+class TicketReply(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    text = db.Column(db.Text, unique=False, nullable=False)
+    media = db.Column(db.Text, unique=False, nullable=True)
+    created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    main_ticket_id = db.Column(db.Integer, db.ForeignKey('ticket.id'))
+
+    created_by = db.relationship('User', backref='ticket_reply_by', foreign_keys=[created_by_id])
+    main_ticket = db.relationship('Ticket', backref = 'ticket_reply_main_ticket', foreign_keys=[main_ticket_id])

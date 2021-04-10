@@ -60,7 +60,7 @@
         <header class="demo-drawer-header">
           <img src="{{ url_for('static', filename='favicon.png') }}" class="demo-avatar">
           <div class="demo-avatar-dropdown">
-            <span>{{username}}</span>
+            <span>{{current_user.username}}</span>
             <div class="mdl-layout-spacer"></div>
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
               <li class="mdl-menu__item">Logout</li>

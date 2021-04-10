@@ -19,6 +19,7 @@ sudo chmod 777 /opt/simpleticket -R
 # Start database migrations
 echo ${green}Running database migrations...${reset}
 flask db upgrade
+flask db migrate -m "SimpleTicket Update"
 
 # Start apache2
 echo ${green}Starting apache...${reset}

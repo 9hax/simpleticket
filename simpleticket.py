@@ -53,7 +53,7 @@ def pnf(e):
     return render_template('403error.html')
 
 # set a custom 500 error page to make the web app pretty
-@app.errorhandler(403)
+@app.errorhandler(500)
 def pnf(e):
     return render_template('500error.html')
 

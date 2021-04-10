@@ -52,6 +52,11 @@ def pnf(e):
 def pnf(e):
     return render_template('403error.html')
 
+# set a custom 500 error page to make the web app pretty
+@app.errorhandler(403)
+def pnf(e):
+    return render_template('500error.html')
+
 # the index and landing page. this displays all the active and closed tickets.
 @app.route('/')
 def home():

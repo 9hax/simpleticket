@@ -39,7 +39,8 @@ def global_template_vars():
         "sitename": config.SITE_NAME,
         "lang": lang,
         "stversion": version,
-        "current_user": g.current_user
+        "current_user": g.current_user,
+        "ticket_list": m.Ticket.query.all()
     }
 
 # set a custom 404 error page to make the web app pretty

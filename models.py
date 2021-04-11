@@ -10,7 +10,7 @@ class User(db.Model):
     passwordResetTimer = db.Column(db.Integer, unique=False, nullable=True, default=-1)
     highPermissionLevel = db.Column(db.Boolean, unique=False, nullable=False, default=False)
     def __repr__(self):
-        return '<User> %r' % self.username
+        return '<User %r>' % self.username
 
 class Ticket(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -23,6 +23,8 @@ class Ticket(db.Model):
 
     created_by = db.relationship('User', backref='tickets_created_by', foreign_keys=[created_by_id])
     assigned_to = db.relationship('User', backref='tickets_assigned_to', foreign_keys=[assigned_to_id])
+    def __repr__(self):
+        return '<Ticket %r>' % self.title
 
 class TicketReply(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -33,3 +35,5 @@ class TicketReply(db.Model):
 
     created_by = db.relationship('User', backref='ticket_reply_by', foreign_keys=[created_by_id])
     main_ticket = db.relationship('Ticket', backref = 'ticket_reply_main_ticket', foreign_keys=[main_ticket_id])
+    def __repr__(self):
+        return '<TicketReply to %r>' % self.main_ticket.title

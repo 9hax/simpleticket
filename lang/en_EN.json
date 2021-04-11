@@ -17,7 +17,7 @@
     "logout": "Logout",
     "home": "Home",
     "create-ticket": "Create New Ticket",
-    "view-ticket": "View ticket ",
+    "view-ticket": "View ticket",
     "faq":"FAQ",
     "about":"About SimpleTicket",
     "about-text":"SimpleTicket is an easy to use Ticket Tracking System with very few requirements and fast loading times for teams of all sizes.<br>SimpleTicket has an Apache OpenSource license. For further information please visit the GitHub project site.",

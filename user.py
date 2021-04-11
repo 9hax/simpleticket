@@ -37,6 +37,9 @@ def create_ticket(title, text, media, created_by, assigned_to):
     m.db.session.add(new_ticket)
     m.db.session.commit()
 
+def edit_ticket():
+    print("NIError")
+
 def create_user(username, email, hashedPassword, passwordResetTimer = -1, highPermissionLevel = 0):
     new_user = m.User()
     new_user.username = username

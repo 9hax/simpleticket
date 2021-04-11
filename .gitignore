@@ -1,4 +1,5 @@
 *.pyc
 simpleticket.db
-.vscode
 migrations/versions/*
+.vscode
+smtpconfig.py

@@ -13,6 +13,7 @@
     "ticket": "Ticket",
     "tickets": "Tickets",
     "accounts": "Users",
+    "account-settings": "User Settings",
     "logout": "Logout",
     "home": "Home",
     "create-ticket": "Create New Ticket",
@@ -43,5 +44,6 @@
     "ticket-status-closed": "Closed",
     "ticket-status-assigned": "Assigned",
     "ticket-time": "Time",
-    "ticket-created-by": "Created by User"
+    "ticket-created-by": "Created by User",
+    "ticket-text-placeholder": "Enter your ticket text here."
 }

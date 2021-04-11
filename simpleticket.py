@@ -69,6 +69,17 @@ def home():
     else: 
         return render_template("index.html")
 
+# the page to create a new ticket on.
+@app.route('/create', methods=['GET', 'POST'])
+def createTicket():
+    if "login" in session.keys() and session['login']:
+        if request.method == 'POST':
+            user.create_ticket(request.form["ticket-title"], request.form["ticket-text"], None, g.current_user, None)
+            return redirect(url_for('home'))
+        return render_template('ticket-create.html')
+    else:
+        abort(403)
+
 # the about page. this shows the current software version and some general information about SimpleTicket.
 @app.route('/about')
 def about():
@@ -131,3 +142,7 @@ def addUser():
         return render_template('user-signup.html', perms = lang["low-perms"])
     else:
         abort(403)
+
+@app.route('/account-settings', methods=['GET', 'POST'])
+def changeSettings():
+    abort(403)

@@ -36,5 +36,13 @@
     "create": "Erstellen",
     "user-create-error": "Der Benutzer kann nicht erstellt werden. Ist der Benutzername bereits vorhanden?",
     "low-perms": "Standardbenutzer",
-    "high-perms": "Administrator"
+    "high-perms": "Administrator",
+    "ticket-title": "Ticket-Titel",
+    "ticket-status": "Status",
+    "ticket-status-open": "Offen",
+    "ticket-status-closed": "Geschlossen",
+    "ticket-status-assigned": "Zugewiesen",
+    "ticket-time": "Zeit",
+    "ticket-created-by": "Erstellt von",
+    "ticket-text-placeholder": "Geben Sie hier ihren Ticket-Text ein."
 }

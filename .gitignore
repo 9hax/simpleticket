@@ -1,3 +1,4 @@
 *.pyc
 simpleticket.db
 migrations/versions/*
+smtpconfig.py

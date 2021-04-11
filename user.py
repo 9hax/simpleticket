@@ -1,5 +1,6 @@
 from simpleticket import m
 import bcrypt
+import config
 import smtpconfig
 import json
 
@@ -25,6 +26,17 @@ def hashPassword(password):
 def get_user(id):
     return m.User.query.get(id)
 
+def create_ticket(title, text, media, created_by, assigned_to):
+    new_ticket = m.Ticket()
+    new_ticket.title = title
+    new_ticket.is_open = True
+    new_ticket.text = text
+    new_ticket.media = media
+    new_ticket.created_by = created_by
+    new_ticket.assigned_to = assigned_to
+    m.db.session.add(new_ticket)
+    m.db.session.commit()
+
 def create_user(username, email, hashedPassword, passwordResetTimer = -1, highPermissionLevel = 0):
     new_user = m.User()
     new_user.username = username
@@ -38,6 +50,6 @@ def create_user(username, email, hashedPassword, passwordResetTimer = -1, highPe
 def sendmail(address, htmlcontent):
     import smtplib, ssl
     sslContext = ssl.create_default_context()
-    with smtplib.SMTP_SSL(config.SMTP_SERVER, config.SMTP_PORT, context=sslContext) as smtpserver:
-        smtpserver.login(config.SMTP_USER, config.SMTP_PASSWORD)
-        smtpserver.sendmail(config.SMTP_USER, address, htmlcontent)
+    with smtplib.SMTP_SSL(smtpconfig.SMTP_SERVER, smtpconfig.SMTP_PORT, context=sslContext) as smtpserver:
+        smtpserver.login(smtpconfig.SMTP_USER, smtpconfig.SMTP_PASSWORD)
+        smtpserver.sendmail(smtpconfig.SMTP_USER, address, htmlcontent)

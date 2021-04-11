@@ -33,5 +33,12 @@
     "create": "Create",
     "user-create-error": "Error while creating user. Is there a user with this name already present?",
     "low-perms": "Default User",
-    "high-perms": "Administrator"
+    "high-perms": "Administrator",
+    "ticket-title": "Ticket title",
+    "ticket-status": "Status",
+    "ticket-status-open": "Open",
+    "ticket-status-closed": "Closed",
+    "ticket-status-assigned": "Assigned",
+    "ticket-time": "Time",
+    "ticket-created-by": "Created by User"
 }

@@ -44,5 +44,6 @@
     "ticket-status-closed": "Closed",
     "ticket-status-assigned": "Assigned",
     "ticket-time": "Time",
-    "ticket-created-by": "Created by User"
+    "ticket-created-by": "Created by User",
+    "ticket-text-placeholder": "Enter your ticket text here."
 }

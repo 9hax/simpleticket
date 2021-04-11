@@ -142,3 +142,7 @@ def addUser():
         return render_template('user-signup.html', perms = lang["low-perms"])
     else:
         abort(403)
+
+@app.route('/account-settings', methods=['GET', 'POST'])
+def changeSettings():
+    abort(403)

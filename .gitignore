@@ -1,3 +1,4 @@
 *.pyc
 simpleticket.db
 .vscode
+migrations/versions/*

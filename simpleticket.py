@@ -134,4 +134,4 @@ def addUser():
 
 @app.route('/account-settings', methods=['GET', 'POST'])
 def changeSettings():
-    abort(404)
+    abort(403)

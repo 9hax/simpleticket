@@ -1,0 +1,11 @@
+{% set title = lang["view-ticket"] [data]%}
+{% extends "master.html" %}
+{% block body %}
+<div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col" , style="width:100%">
+    <p>
+        {% if data %}
+          {{data}}
+        {% endif %}
+    </p>
+</div>
+{% endblock %}

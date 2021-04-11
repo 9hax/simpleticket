@@ -105,7 +105,7 @@ def login():
             return redirect(url_for('home'))
         else: 
             message = lang["login-error"]
-    return render_template('login.html', message = message)
+    return render_template('user-login.html', message = message)
 
 # provide a logout url. we dont want users to get stuck logged in :)
 @app.route('/logout')
@@ -121,7 +121,7 @@ def resetPW():
     if request.method == 'POST':
         message = lang['password-reset-form-message']
         user.resetpw(request.form["email"])
-    return render_template('pwreset.html', message = message)
+    return render_template('user-password-reset.html', message = message)
 
 @app.route('/add-admin', methods=['GET', 'POST'])
 def addAdmin():

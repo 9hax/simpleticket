@@ -80,6 +80,12 @@ def createTicket():
     else:
         abort(403)
 
+# the page to view and edit tickets.
+@app.route('/view/<input>', methods=['GET', 'POST'])
+def viewTicket(input):
+    ticket = m.Ticket.query.filter_by(id = input)
+    return render_template('ticket-view.html', data = ticket.title)
+
 # the about page. this shows the current software version and some general information about SimpleTicket.
 @app.route('/about')
 def about():

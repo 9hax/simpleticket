@@ -16,7 +16,15 @@
       {% for ticket in ticket_list %}
       <tr style="cursor: pointer" onclick="window.location='view/{{ticket.id}}'">
         <td class="mdl-data-table__cell--non-numeric">{{ticket.title}}</td>
-        <td class="mdl-data-table__cell--non-numeric">{{lang["ticket-status-open"] if ticket.is_open and ticket.assigned_to_id==None else lang["ticket-status-assigned"] if ticket.is_open and ticket.assigned_to_id!=None else lang["ticket-status-closed"]}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{lang["ticket-status-open"] if ticket.is_open and ticket.assigned_to_id==None else lang["ticket-status-assigned"] if ticket.is_open and ticket.assigned_to_id!=None else lang["ticket-status-closed"]}}
+          {% if ticket.is_open %} 
+          {% if ticket.assigned_to_id==None %}
+          <span class="material-icons ticket-icon">error_outline</span>
+          {% else %}
+          <span class="material-icons ticket-icon">pending</span>
+          {% endif %} {% else %}
+          <span class="material-icons ticket-icon">check_circle</span>
+          {% endif %}</td>
         <td class="mdl-data-table__cell--non-numeric">0</td>
         <td class="mdl-data-table__cell--non-numeric">{{ticket.created_by}}</td> 
       </tr>

@@ -19,6 +19,15 @@ body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 
+.ticket-icon {
+  height: 20px;
+  font-size:20px;
+} 
+
+.mdl-chip {
+  width: fit-content;
+}
+
 .demo-avatar {
   width: 48px;
   height: 48px;

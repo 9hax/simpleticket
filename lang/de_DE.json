@@ -17,6 +17,7 @@
     "logout": "Logout",
     "home": "Startseite",
     "create-ticket": "Ticket erstellen",
+    "view-ticket": "Ticket ansehen",
     "faq":"FAQ",
     "about":"Über SimpleTicket",
     "about-text":"SimpleTicket ist ein einfaches Ticketsystem mit sehr kleinen Leistungsanforderungen und schnellen Ladezeiten für Teams aller Größen.<br>SimpleTicket hat eine Apache OpenSource Lizenz. Für mehr Informationen besuchen Sie bitte die GitHub-Seite des Projektes.",

@@ -26,6 +26,17 @@ sudo git clone https://github.com/9hax/simpleticket /opt/simpleticket
 # make simpleticket directory accessible
 sudo chmod 777 /opt/simpleticket -R
 
+#######################
+# Python dependencies #
+#######################
+echo ${green}Python dependencies setup${reset}
+
+# move to simpleticket directory o make the following steps easier
+cd /opt/simpleticket
+
+# install current requirements using pip3
+pip3 install -r requirements.txt
+
 ###############################
 # Begin user configuration    #
 ###############################

@@ -37,8 +37,12 @@ def create_ticket(title, text, media, created_by, assigned_to):
     m.db.session.add(new_ticket)
     m.db.session.commit()
 
-def edit_ticket():
-    print("NIError")
+def edit_ticket(current_ticket_id, new_open, new_assignee):
+    current_ticket = m.Ticket.query.filter_by(id = current_ticket_id)
+    current_ticket.is_open = new_open
+    current_ticket.assigned_to = new_assignee
+    m.db.session.commit()
+
 
 def create_user(username, email, hashedPassword, passwordResetTimer = -1, highPermissionLevel = 0):
     new_user = m.User()

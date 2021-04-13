@@ -86,7 +86,7 @@ def viewTicket(ticketid):
     ticket = m.Ticket.query.filter_by(id = ticketid).first()
     if "login" in session.keys() and session['login']:
         if request.method == 'POST':
-            user.edit_ticket()
+            user.edit_ticket(ticketid, request.form['new-status'], request.form["new-assignee"])
         return render_template('ticket-view.html', ticket = ticket)
     else:
         abort(403)

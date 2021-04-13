@@ -38,14 +38,6 @@ cd /opt/simpleticket
 pip3 install -r requirements.txt
 
 ###############################
-# Begin user configuration    #
-###############################
-echo ${green}Begin user configuration${reset}
-
-# Start a nano editor with the simpleticket configuration file, let the user edit the default values
-sudo nano /opt/simpleticket/config.py
-
-###############################
 # Begin apache2 configuration #
 ###############################
 echo ${green}Begin apache2 cofniguration${reset}

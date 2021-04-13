@@ -46,5 +46,9 @@
     "ticket-status-assigned": "Zugewiesen",
     "ticket-time": "Zeit",
     "ticket-created-by": "Erstellt von",
-    "ticket-text-placeholder": "Geben Sie hier ihren Ticket-Text ein."
+    "ticket-text-placeholder": "Geben Sie hier ihren Ticket-Text ein.",
+    "not-assigned": "Nicht zugewiesen",
+    "assigned-to": "Zugewiesen zu",
+    "close-ticket": "Ticket schließen",
+    "fullname": "Vollständiger Name"
 }

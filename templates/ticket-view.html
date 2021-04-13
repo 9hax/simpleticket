@@ -1,27 +1,40 @@
-{% set title = lang["view-ticket"]+ticket.title %} {% extends "master.html" %}
+{% set title = lang["view-ticket"]+" "+ticket.title %} {% extends "master.html" %}
 {% block body %}
 <div
   class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col"
   ,
   style="width: 100%"
 >
-  <h2>{{ticket.title}}  </h2>
-  <span class="mdl-chip ticket-status-chip">
-    <span class="mdl-chip__text"
-      >{{lang["ticket-status"]}}: {{lang["ticket-status-open"] if ticket.is_open
-      and ticket.assigned_to_id==None else lang["ticket-status-assigned"] if
-      ticket.is_open and ticket.assigned_to_id!=None else
-      lang["ticket-status-closed"]}} {% if ticket.is_open %} {% if
-      ticket.assigned_to_id==None %}
-      <span class="material-icons ticket-icon">error_outline</span>
-      {% else %}
-      <span class="material-icons ticket-icon">pending</span>
-      {% endif %} {% else %}
-      <span class="material-icons ticket-icon">check_circle</span>
-      {% endif %}
+  <h2>{{ticket.title}}</h2>
+  <div class="aux" style="float: left">
+    <span class="mdl-chip ticket-status-chip">
+      <span class="mdl-chip__text"
+        >{{lang["ticket-status"]}}: {{lang["ticket-status-open"] if
+        ticket.is_open and ticket.assigned_to_id==None else
+        lang["ticket-status-assigned"] if ticket.is_open and
+        ticket.assigned_to_id!=None else lang["ticket-status-closed"]}} {% if
+        ticket.is_open %} {% if ticket.assigned_to_id==None %}
+        <span class="material-icons ticket-icon">error_outline</span>
+        {% else %}
+        <span class="material-icons ticket-icon">pending</span>
+        {% endif %} {% else %}
+        <span class="material-icons ticket-icon">check_circle</span>
+        {% endif %}
+      </span>
     </span>
-  </span>
-
+    <span class="mdl-chip ticket-status-chip" style="margin-left: 10px; margin-right: 10px;">
+      <span class="mdl-chip__text">
+        {{lang["not-assigned"] if ticket.assigned_to_id == None else
+        lang["assigned-to"]+" "+ticket.assigned-to.name}}
+      </span>
+    </span>
+    <a href="{{ticket.id}}/close">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+        {{lang["close-ticket"]}}
+      </button>
+    </a>
+  </div>
+  <hr/>
   <p>{{ticket.text}}</p>
 </div>
 {% endblock %}

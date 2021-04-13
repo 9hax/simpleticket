@@ -7,7 +7,7 @@ from flask_migrate import Migrate
 import sqlalchemy
 import models as m
 
-import config, json, user, git, sys, os
+import config, json, user, git, os
 
 # prepare language files
 
@@ -58,7 +58,7 @@ def accessDenied(e):
 def serverError(e):
     return render_template('500error.html')
 
-# the index and landing page. this displays all the active and closed tickets.
+# the index and home landing page. this displays all the active and closed tickets.
 @app.route('/')
 def home():
     if config.REQUIRE_LOGIN:
@@ -86,8 +86,20 @@ def viewTicket(ticketid):
     ticket = m.Ticket.query.filter_by(id = ticketid).first()
     if "login" in session.keys() and session['login']:
         if request.method == 'POST':
-            user.edit_ticket(ticketid, request.form['new-status'], request.form["new-assignee"])
-        return render_template('ticket-view.html', ticket = ticket)
+            ticket.assigned_to_id = request.form["new-assignee-id"]
+            m.db.session.commit()
+        ticket_replies = m.TicketReply.query.filter_by(main_ticket = ticket)
+        return render_template('ticket-view.html', ticket = ticket, replies = ticket_replies)
+    else:
+        abort(403)
+
+@app.route('/view/<ticketid>/close')
+def closeTicket(ticketid):
+    ticket = m.Ticket.query.filter_by(id = ticketid).first()
+    if "login" in session.keys() and session['login']:
+        ticket.is_open = False
+        m.db.session.commit()
+        return redirect(url_for('viewTicket', ticketid = ticketid))
     else:
         abort(403)
 

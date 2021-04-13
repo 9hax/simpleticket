@@ -1,4 +1,4 @@
-from flask_sqlalchemy import *
+from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -36,4 +36,4 @@ class TicketReply(db.Model):
     created_by = db.relationship('User', backref='ticket_reply_by', foreign_keys=[created_by_id])
     main_ticket = db.relationship('Ticket', backref = 'ticket_reply_main_ticket', foreign_keys=[main_ticket_id])
     def __repr__(self):
-        return '<TicketReply to %r>' % self.main_ticket.title
+        return '<TicketReply to %r>' % self.main_ticket

@@ -70,3 +70,5 @@ echo ${green}Start website${reset}
 
 # Start apache2
 sudo service apache2 start
+
+echo ${green}You can set up SimpleTicket with the file /opt/simpleticket${reset}

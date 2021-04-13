@@ -13,7 +13,7 @@ def resetpw(email):
     sendmail(email, "Place an email text here.")
 
 def verify_login(u, p):
-    potential_user = m.User.query.filter_by(username=u).first()
+    potential_user = m.User.query.filter_by(username=u.lower()).first()
     if potential_user:
         if bcrypt.checkpw(p.encode('utf-8'), potential_user.password.encode('utf-8')):
             return potential_user
@@ -42,7 +42,7 @@ def edit_ticket():
 
 def create_user(username, email, hashedPassword, passwordResetTimer = -1, highPermissionLevel = 0):
     new_user = m.User()
-    new_user.username = username
+    new_user.username = username.loewr()
     new_user.email = email
     new_user.password = hashedPassword
     new_user.passwordResetTimer = passwordResetTimer

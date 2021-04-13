@@ -101,7 +101,7 @@ def about():
 def login():
     message = None
     if request.method == 'POST':
-        username = request.form["login"]
+        username = str.lower(request.form["login"]) # make sure the login string is only in lowercase
         password = request.form["password"]
         acc = user.verify_login(username, password)
         if acc:
@@ -133,7 +133,7 @@ def addAdmin():
     if os.path.exists(config.CREATE_ADMIN_FILE):
         if request.method == 'POST':
             try:
-                user.create_user(request.form["username"], request.form["email"], user.hashPassword(request.form["password"]), highPermissionLevel=True)
+                user.create_user(str.lower(request.form["username"]), request.form["email"], user.hashPassword(request.form["password"]), highPermissionLevel=True)
             except sqlalchemy.exc.IntegrityError:
                 return render_template('user-signup.html', perms = lang["high-perms"], message = lang["user-create-error"])
             return redirect(url_for('login'))
@@ -146,7 +146,7 @@ def addUser():
     if "login" in session.keys() and session['login'] and g.current_user.highPermissionLevel:
         if request.method == 'POST':
             try:
-                user.create_user(request.form["username"], request.form["email"], user.hashPassword(request.form["password"]), highPermissionLevel=False)
+                user.create_user(str.lower(request.form["username"]), request.form["email"], user.hashPassword(request.form["password"]), highPermissionLevel=False)
             except sqlalchemy.exc.IntegrityError:
                 return render_template('user-signup.html', perms = lang["low-perms"], message = lang["user-create-error"])
             return redirect(url_for('login'))

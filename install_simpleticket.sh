@@ -62,6 +62,7 @@ echo ${green}Begin Flask init${reset}
 # Start database migrations
 flask db upgrade
 flask db migrate -m "Initial installation"
+flask db upgrade
 
 #################
 # Start website #

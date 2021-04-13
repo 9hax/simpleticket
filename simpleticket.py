@@ -2,7 +2,7 @@
 
 
 # Handle Imports
-from flask import *
+from flask import Flask, session, render_template, redirect, url_for, request, abort, g
 from flask_migrate import Migrate
 import sqlalchemy
 import models as m
@@ -45,17 +45,17 @@ def global_template_vars():
 
 # set a custom 404 error page to make the web app pretty
 @app.errorhandler(404)
-def pnf(e):
+def pageNotFound(e):
     return render_template('404error.html')
 
 # set a custom 403 error page to make the web app pretty
 @app.errorhandler(403)
-def pnf(e):
+def accessDenied(e):
     return render_template('403error.html')
 
 # set a custom 500 error page to make the web app pretty
 @app.errorhandler(500)
-def pnf(e):
+def serverError(e):
     return render_template('500error.html')
 
 # the index and landing page. this displays all the active and closed tickets.

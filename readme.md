@@ -32,6 +32,8 @@ To create an admin user, just visit /add-admin to open a signup form.
 To enable this functionality, firstly create a file at /opt/simpleticket/_CREATE_ADMIN_ALLOWED . 
 This path can be changed in config.py.
 
+Please make sure to delete the _CREATE_ADMIN_ALLOWED file after adding all the administrator accounts you need, as leaving the file will enable everyone on the same network to create their own admin users without other authentication.
+
 ## Creating normal users
 
 To create a normal user, visit /add-user while logged in as an admin.

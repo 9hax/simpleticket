@@ -26,7 +26,7 @@
           <span class="material-icons ticket-icon">check_circle</span>
           {% endif %}</td>
         <td class="mdl-data-table__cell--non-numeric">0</td>
-        <td class="mdl-data-table__cell--non-numeric">{{ticket.created_by}}</td> 
+        <td class="mdl-data-table__cell--non-numeric">{{ticket.created_by.fullname}}</td> 
       </tr>
       {% endfor %}
     </table>

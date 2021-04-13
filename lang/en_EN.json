@@ -49,5 +49,6 @@
     "ticket-text-placeholder": "Enter your ticket text here.",
     "not-assigned": "Not assigned",
     "assigned-to": "Assigned to",
-    "close-ticket": "Close Ticket"
+    "close-ticket": "Close Ticket",
+    "fullname": "Full Name"
 }

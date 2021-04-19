@@ -84,6 +84,8 @@ def createTicket():
 @app.route('/view/<ticketid>', methods=['GET', 'POST'])
 def viewTicket(ticketid):
     ticket = m.Ticket.query.filter_by(id = ticketid).first()
+    if ticket == None:
+        abort(404)
     if "login" in session.keys() and session['login']:
         if request.method == 'POST':
             ticket.assigned_to_id = request.form["new-assignee-id"]
@@ -96,8 +98,22 @@ def viewTicket(ticketid):
 @app.route('/view/<ticketid>/close')
 def closeTicket(ticketid):
     ticket = m.Ticket.query.filter_by(id = ticketid).first()
+    if ticket == None:
+        abort(404)
     if "login" in session.keys() and session['login']:
         ticket.is_open = False
+        m.db.session.commit()
+        return redirect(url_for('viewTicket', ticketid = ticketid))
+    else:
+        abort(403)
+
+@app.route('/view/<ticketid>/reopen')
+def reopenTicket(ticketid):
+    ticket = m.Ticket.query.filter_by(id = ticketid).first()
+    if ticket == None:
+        abort(404)
+    if "login" in session.keys() and session['login']:
+        ticket.is_open = True
         m.db.session.commit()
         return redirect(url_for('viewTicket', ticketid = ticketid))
     else:

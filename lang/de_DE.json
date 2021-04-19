@@ -50,5 +50,6 @@
     "not-assigned": "Nicht zugewiesen",
     "assigned-to": "Zugewiesen zu",
     "close-ticket": "Ticket schließen",
+    "reopen-ticket": "Ticket wiedereröffnen",
     "fullname": "Vollständiger Name"
 }

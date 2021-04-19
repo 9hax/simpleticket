@@ -35,6 +35,12 @@
         {{lang["close-ticket"]}}
       </button>
     </a>
+    {% else %}
+    <a href="{{ticket.id}}/reopen">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+        {{lang["reopen-ticket"]}}
+      </button>
+    </a>
     {% endif %}
   </div>
   <hr/>

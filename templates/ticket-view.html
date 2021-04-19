@@ -6,6 +6,7 @@
   style="width: 100%"
 >
   <h2>{{ticket.title}}</h2>
+  {{lang["ticket-created-by"] + " " + ticket.created_by.fullname}}
   <div class="aux" style="float: left">
     <span class="mdl-chip ticket-status-chip" style="background: {{ 'lightcoral' if ticket.is_open and ticket.assigned_to_id==None else 'khaki' if ticket.is_open and ticket.assigned_to_id!=None else 'lightgreen'}}">
 
@@ -30,13 +31,13 @@
       </span>
     </span>
     {% if ticket.is_open %}
-    <a href="{{ticket.id}}/close">
+    <a href="{{ticket.id}}/close" style="text-decoration: none;">
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
         {{lang["close-ticket"]}}
       </button>
     </a>
     {% else %}
-    <a href="{{ticket.id}}/reopen">
+    <a href="{{ticket.id}}/reopen" style="text-decoration: none;">
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
         {{lang["reopen-ticket"]}}
       </button>
@@ -46,4 +47,17 @@
   <hr/>
   <p>{{ticket.text}}</p>
 </div>
+{% for ticketreply in replies %}
+<div
+  class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col"
+  ,
+  style="width: 100%"
+>
+  <div class="aux" style="float: left">
+    {{lang["ticket-reply-by"] + " " + ticketreply.created_by.fullname}}
+  </div>
+  <hr/>
+  <p>{{ticketreply.text}}</p>
+</div>
+{% endfor %}
 {% endblock %}

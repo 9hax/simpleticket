@@ -18,6 +18,7 @@ class Ticket(db.Model):
     is_open = db.Column(db.Boolean, unique=False, nullable = False, default= True)
     text = db.Column(db.Text, unique=False, nullable=False)
     media = db.Column(db.Text, unique=False, nullable=True) #This contains base64'ed binary images and videos in a python list.
+    time = db.Column(db.Integer, unique = False) # The time the ticket was created in epoch seconds
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     assigned_to_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
 
@@ -30,6 +31,7 @@ class TicketReply(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     text = db.Column(db.Text, unique=False, nullable=False)
     media = db.Column(db.Text, unique=False, nullable=True)
+    time = db.Column(db.Integer, unique = False) # The time the ticket reply was created in epoch seconds
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     main_ticket_id = db.Column(db.Integer, db.ForeignKey('ticket.id'))
 

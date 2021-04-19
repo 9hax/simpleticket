@@ -7,7 +7,7 @@ from flask_migrate import Migrate
 import sqlalchemy
 import models as m
 
-import config, json, user, git, os
+import config, json, user, git, os, time, datetime
 
 # prepare language files
 
@@ -40,7 +40,10 @@ def global_template_vars():
         "lang": lang,
         "stversion": version,
         "current_user": g.current_user,
-        "ticket_list": m.Ticket.query.all()
+        "ticket_list": m.Ticket.query.all(),
+        "ticket_replies": m.TicketReply.query.all(),
+        "ctime": time.ctime,
+        "datetime_module": datetime
     }
 
 # set a custom 404 error page to make the web app pretty
@@ -118,6 +121,17 @@ def reopenTicket(ticketid):
         return redirect(url_for('viewTicket', ticketid = ticketid))
     else:
         abort(403)
+
+@app.route('/view/<ticketid>/reply', methods=['POST'])
+def createTicketReply():
+    if "login" in session.keys() and session['login']:
+        if request.method == 'POST':
+            user.create_ticket_reply(request.form["reply-text"], None, g.current_user, None)
+            return redirect(url_for('home'))
+        return render_template('ticket-create.html')
+    else:
+        abort(403)
+
 
 # the about page. this shows the current software version and some general information about SimpleTicket.
 @app.route('/about')

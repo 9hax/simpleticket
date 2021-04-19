@@ -2,6 +2,7 @@ import bcrypt
 import config
 import smtpconfig
 import json
+import time
 from simpleticket import m
 
 # prepare language files
@@ -32,6 +33,17 @@ def create_ticket(title, text, media, created_by, assigned_to):
     new_ticket.is_open = True
     new_ticket.text = text
     new_ticket.media = media
+    new_ticket.time = time.time()
+    new_ticket.created_by = created_by
+    new_ticket.assigned_to = assigned_to
+    m.db.session.add(new_ticket)
+    m.db.session.commit()
+
+def create_ticket_reply(text, media, created_by, assigned_to):
+    new_ticket = m.Ticket()
+    new_ticket.text = text
+    new_ticket.media = media
+    new_ticket.time = time.time()
     new_ticket.created_by = created_by
     new_ticket.assigned_to = assigned_to
     m.db.session.add(new_ticket)

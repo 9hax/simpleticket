@@ -7,13 +7,14 @@
 >
   <h2>{{ticket.title}}</h2>
   <div class="aux" style="float: left">
-    <span class="mdl-chip ticket-status-chip">
-      <span class="mdl-chip__text"
-        >{{lang["ticket-status"]}}: {{lang["ticket-status-open"] if
-        ticket.is_open and ticket.assigned_to_id==None else
+    <span class="mdl-chip ticket-status-chip" style="background: {{ 'lightcoral' if ticket.is_open and ticket.assigned_to_id==None else 'khaki' if ticket.is_open and ticket.assigned_to_id!=None else 'lightgreen'}}">
+
+      <span class="mdl-chip__text">
+        {{lang["ticket-status"]}}: 
+        {{lang["ticket-status-open"] if ticket.is_open and ticket.assigned_to_id==None else
         lang["ticket-status-assigned"] if ticket.is_open and
-        ticket.assigned_to_id!=None else lang["ticket-status-closed"]}} {% if
-        ticket.is_open %} {% if ticket.assigned_to_id==None %}
+        ticket.assigned_to_id!=None else lang["ticket-status-closed"]}} 
+        {% if ticket.is_open %} {% if ticket.assigned_to_id==None %}
         <span class="material-icons ticket-icon">error_outline</span>
         {% else %}
         <span class="material-icons ticket-icon">pending</span>
@@ -28,11 +29,13 @@
         lang["assigned-to"]+" "+ticket.assigned-to.name}}
       </span>
     </span>
+    {% if ticket.is_open %}
     <a href="{{ticket.id}}/close">
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
         {{lang["close-ticket"]}}
       </button>
     </a>
+    {% endif %}
   </div>
   <hr/>
   <p>{{ticket.text}}</p>

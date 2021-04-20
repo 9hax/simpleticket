@@ -8,6 +8,20 @@ It even runs on a [Raspberry Pi](https://raspberrypi.org)!
 
 WARNING! THIS IS NOT YET READY FOR PRODUCTION ENVIRONMENTS AS VERY BASIC FEATURES OF TICKET SYSTEMS ARE STILL MISSING.
 
+## TODOS
+
+Implement ticket replies
+
+Implement easy SMTP setup wizard
+
+Implement ticket notes (like replies but can only be seen by admins)
+
+Implement search feature
+
+Implement SQL Injection prevention
+
+Fix ticket order in Index to make recently updated tickets appear on top
+
 ## Installation
 
 You can easily install SimpleTicket on any debian System using the provided install script.

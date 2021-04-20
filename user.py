@@ -3,6 +3,7 @@ import config
 import smtpconfig
 import json
 import time
+import datetime
 from simpleticket import m
 
 # prepare language files
@@ -66,3 +67,9 @@ def sendmail(address, htmlcontent):
     with smtplib.SMTP_SSL(smtpconfig.SMTP_SERVER, smtpconfig.SMTP_PORT, context=ssl_context) as smtpserver:
         smtpserver.login(smtpconfig.SMTP_USER, smtpconfig.SMTP_PASSWORD)
         smtpserver.sendmail(smtpconfig.SMTP_USER, address, htmlcontent)
+
+def getTime(timestamp):
+    try:
+        return datetime.datetime.fromtimestamp(timestamp).strftime("%H:%M:%S, %m.%d.%Y")
+    except:
+        return "Invalid time"

@@ -25,7 +25,7 @@
           <span class="material-icons ticket-icon">check_circle</span>
           {% endif %}</td>
         <td class="mdl-data-table__cell--non-numeric">{{ticket.title}}</td>
-        <td class="mdl-data-table__cell--non-numeric">{{datetime_module.datetime.fromtimestamp(ticket.time).strftime("%H:%M:%S, %m.%d.%Y")}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{getTime(ticket.time)}}</td>
         <td class="mdl-data-table__cell--non-numeric">{{ticket.created_by.fullname}}</td> 
       </tr>
       {% endfor %}

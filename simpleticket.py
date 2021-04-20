@@ -43,7 +43,7 @@ def global_template_vars():
         "ticket_list": m.Ticket.query.all(),
         "ticket_replies": m.TicketReply.query.all(),
         "ctime": time.ctime,
-        "datetime_module": datetime
+        "getTime": user.getTime
     }
 
 # set a custom 404 error page to make the web app pretty

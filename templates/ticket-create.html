@@ -1,6 +1,4 @@
-{% set title = lang["create-ticket"]%}
-{% extends "master.html" %}
-{% block body %}
+{% set title = lang["create-ticket"]%} {% extends "master.html" %} {% block body %}
 <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col" , style="width:100%">
     <p>
         <form action="" method="POST">
@@ -12,12 +10,11 @@
                 </div>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
-                <textarea class="mdl-textfield__input" type="text" rows="3" id="sample5" name="ticket-text"></textarea>
+                <textarea class="mdl-textfield__input" type="text" rows="3" id="sample5" name="ticket-text" style="width: 100%"></textarea>
                 <label class="mdl-textfield__label" for="sample5">{{lang["ticket-text-placeholder"]}}</label>
             </div>
 
-            <button type="submit"
-                class="mdl-cell mdl-cell--12-col mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+            <button type="submit" class="mdl-cell mdl-cell--12-col mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
                 {{lang["create"]}}
             </button>
         </form>

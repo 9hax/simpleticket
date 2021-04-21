@@ -47,11 +47,11 @@
     <p>{{ticketreply.text}}</p>
 </div>
 {% endfor %}
-<div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col" , style="width: 100%">
+<div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col" style="width: 100%">
     <form action="{{url_for('createTicketReply', ticketid = ticket.id)}}" method="POST">
-        {{lang["write-reply"]}}
+        {{lang["write-reply"]}}</br>
         <div class="mdl-textfield mdl-js-textfield">
-            <textarea class="mdl-textfield__input" type="text" rows="3" id="reply-textbox" name="reply-text"></textarea>
+            <textarea class="mdl-textfield__input" type="text" rows="3" id="reply-textbox" name="reply-text" style="width: 100%"></textarea>
             <label class="mdl-textfield__label" for="reply-textbox">{{lang["ticket-text-placeholder"]}}</label
       >
     </div>

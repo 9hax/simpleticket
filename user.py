@@ -25,6 +25,9 @@ def verify_login(u, p):
 def hashPassword(password):
     return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt(12)).decode()
 
+def get_userid(username):
+    return m.User.query.filter_by(username = username).first().id
+
 def get_user(userid):
     return m.User.query.get(userid)
 
@@ -40,13 +43,13 @@ def create_ticket(title, text, media, created_by, assigned_to):
     m.db.session.add(new_ticket)
     m.db.session.commit()
 
-def create_ticket_reply(text, media, created_by, assigned_to):
-    new_ticket = m.Ticket()
+def create_ticket_reply(text, media, created_by, main_ticket_id):
+    new_ticket = m.TicketReply()
     new_ticket.text = text
     new_ticket.media = media
     new_ticket.time = time.time()
     new_ticket.created_by = created_by
-    new_ticket.assigned_to = assigned_to
+    new_ticket.main_ticket_id = main_ticket_id
     m.db.session.add(new_ticket)
     m.db.session.commit()
 
@@ -60,6 +63,12 @@ def create_user(username, fullname, email, hashedPassword, passwordResetTimer = 
     new_user.highPermissionLevel = highPermissionLevel
     m.db.session.add(new_user)
     m.db.session.commit()
+
+def modify_user_password(userid, newPasswordHash):
+    modified_user = get_user(userid)
+    modified_user.password = newPasswordHash
+    m.db.session.commit()
+    
 
 def sendmail(address, htmlcontent):
     import smtplib, ssl

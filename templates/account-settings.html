@@ -1,0 +1,19 @@
+{% set title = lang["account-settings"]%} {% extends "master.html" %} {% block body %}
+<div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col" , style="width:100%">
+    <p>
+        <form action="" method="POST">
+            {{lang["password-update"]}}
+            <div id="name">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="first" name="password">
+                    <label class="mdl-textfield__label" for="first">{{lang["password"]}}</label>
+                </div>
+            </div>
+
+            <button type="submit" class="mdl-cell mdl-cell--12-col mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+                {{lang["save"]}}
+            </button>
+        </form>
+    </p>
+</div>
+{% endblock %}

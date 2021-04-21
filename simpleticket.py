@@ -123,10 +123,10 @@ def reopenTicket(ticketid):
         abort(403)
 
 @app.route('/view/<ticketid>/reply', methods=['POST'])
-def createTicketReply():
+def createTicketReply(ticketid):
     if "login" in session.keys() and session['login']:
         if request.method == 'POST':
-            user.create_ticket_reply(request.form["reply-text"], None, g.current_user, None)
+            user.create_ticket_reply(request.form["reply-text"], None, g.current_user, ticketid)
             return redirect(url_for('home'))
         return render_template('ticket-create.html')
     else:
@@ -198,4 +198,26 @@ def addUser():
 
 @app.route('/account-settings', methods=['GET', 'POST'])
 def changeSettings():
-    abort(403)
+    if "login" in session.keys() and session['login']:
+        if request.method == 'POST':
+            try:
+                user.modify_user_password(g.current_user.id, user.hashPassword(request.form["password"]))
+            except sqlalchemy.exc.IntegrityError:
+                return render_template('account-settings.html', message = lang["user-modify-error"])
+            return redirect(url_for('home'))
+        return render_template('account-settings.html')
+    else:
+        abort(403)
+
+@app.route('/admin-settings', methods=['GET', 'POST'])
+def adminUserSettigs():
+    if "login" in session.keys() and session['login'] and g.current_user.highPermissionLevel:
+        if request.method == 'POST':
+            try:
+                user.modify_user_password(user.get_userid(request.form(username)), user.hashPassword(request.form["password"]))
+            except sqlalchemy.exc.IntegrityError:
+                return render_template('admin-settings.html', message = lang["user-modify-error"])
+            return redirect(url_for('home'))
+        return render_template('admin-settings.html')
+    else:
+        abort(403)

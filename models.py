@@ -7,6 +7,7 @@ class User(db.Model):
     fullname = db.Column(db.Text, unique=False, nullable=True)
     email = db.Column(db.String(400), unique=True, nullable=True)
     password = db.Column(db.String(1000), unique=False, nullable=True)
+    passwordToken = db.Column(db.Text, unique=False, nullable=True)
     passwordResetTimer = db.Column(db.Integer, unique=False, nullable=True, default=-1)
     highPermissionLevel = db.Column(db.Boolean, unique=False, nullable=False, default=False)
     def __repr__(self):

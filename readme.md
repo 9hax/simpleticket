@@ -10,8 +10,6 @@ WARNING! THIS IS NOT YET READY FOR PRODUCTION ENVIRONMENTS AS VERY BASIC FEATURE
 
 ## TODOS
 
-Implement ticket replies
-
 Implement easy SMTP setup wizard
 
 Implement ticket notes (like replies but can only be seen by admins)

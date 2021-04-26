@@ -104,9 +104,12 @@ def closeTicket(ticketid):
     if ticket == None:
         abort(404)
     if "login" in session.keys() and session['login']:
-        ticket.is_open = False
-        m.db.session.commit()
-        return redirect(url_for('viewTicket', ticketid = ticketid))
+        if g.current_user.id == ticket.created_by_id or g.current_user.highPermissionLevel:
+            ticket.is_open = False
+            m.db.session.commit()
+            return redirect(url_for('viewTicket', ticketid = ticketid))
+        else:
+            abort(403)
     else:
         abort(403)
 
@@ -116,9 +119,12 @@ def reopenTicket(ticketid):
     if ticket == None:
         abort(404)
     if "login" in session.keys() and session['login']:
-        ticket.is_open = True
-        m.db.session.commit()
-        return redirect(url_for('viewTicket', ticketid = ticketid))
+        if g.current_user.id == ticket.created_by_id or g.current_user.highPermissionLevel:
+            ticket.is_open = True
+            m.db.session.commit()
+            return redirect(url_for('viewTicket', ticketid = ticketid))
+        else:
+            abort(403)
     else:
         abort(403)
 

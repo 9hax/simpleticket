@@ -220,7 +220,7 @@ def adminUserSettigs():
     if "login" in session.keys() and session['login'] and g.current_user.highPermissionLevel:
         if request.method == 'POST':
             try:
-                user.modify_user_password(user.get_userid(request.form(username)), user.hashPassword(request.form["password"]))
+                user.modify_user_password(user.get_userid(request.form["username"]), user.hashPassword(request.form["password"]))
             except sqlalchemy.exc.IntegrityError:
                 return render_template('admin-settings.html', message = lang["user-modify-error"])
             return redirect(url_for('home'))

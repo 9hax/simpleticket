@@ -266,3 +266,7 @@ _:-ms-input-placeholder,
     -ms-flex-align: center;
     align-items: center;
 }
+
+.mdl-textfield {
+    width: 100%;
+}

@@ -4,6 +4,8 @@ import smtpconfig
 import json
 import time
 import datetime
+import random
+import string
 from simpleticket import m
 
 # prepare language files
@@ -11,8 +13,12 @@ from simpleticket import m
 with open("lang/"+config.LANGUAGE+".json",'r',encoding="utf-8") as langfile:
     lang = json.load(langfile)
 
-def resetpw(email):
-    sendmail(email, "Place an email text here.")
+def resetpw(user):
+    newPassword = ''.join(random.choices(string.ascii_uppercase + string.digits, k = random.randint(20,30)))
+    user.password = hashPassword(newPassword)
+    m.db.session.commit()   
+    sendmail(user.email, lang["password-reset-mail"].replace("%PW%", newPassword), lang["password-reset"]+" | "+config.SITE_NAME)
+    del(newPassword)
 
 def verify_login(u, p):
     potential_user = m.User.query.filter_by(username=u.lower()).first()
@@ -70,12 +76,13 @@ def modify_user_password(userid, newPasswordHash):
     m.db.session.commit()
     
 
-def sendmail(address, htmlcontent):
+def sendmail(address, htmlcontent, subject):
     import smtplib, ssl
+    mailstring = "From: "+smtpconfig.SMTP_USER+"\nTo: "+address+"\nSubject: "+subject+"\n\n"+htmlcontent+"\n"
     ssl_context = ssl.create_default_context()
     with smtplib.SMTP_SSL(smtpconfig.SMTP_SERVER, smtpconfig.SMTP_PORT, context=ssl_context) as smtpserver:
         smtpserver.login(smtpconfig.SMTP_USER, smtpconfig.SMTP_PASSWORD)
-        smtpserver.sendmail(smtpconfig.SMTP_USER, address, htmlcontent)
+        smtpserver.sendmail(smtpconfig.SMTP_USER, address, mailstring)
 
 def getTime(timestamp):
     try:

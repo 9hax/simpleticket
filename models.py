@@ -7,6 +7,7 @@ class User(db.Model):
     fullname = db.Column(db.Text, unique=False, nullable=True)
     email = db.Column(db.String(400), unique=True, nullable=True)
     password = db.Column(db.String(1000), unique=False, nullable=True)
+    passwordToken = db.Column(db.Text, unique=False, nullable=True)
     passwordResetTimer = db.Column(db.Integer, unique=False, nullable=True, default=-1)
     highPermissionLevel = db.Column(db.Boolean, unique=False, nullable=False, default=False)
     def __repr__(self):
@@ -31,6 +32,7 @@ class TicketReply(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     text = db.Column(db.Text, unique=False, nullable=False)
     media = db.Column(db.Text, unique=False, nullable=True)
+    isNote = db.Column(db.Boolean, unique=False, nullable = False, default=False)
     time = db.Column(db.Integer, unique = False) # The time the ticket reply was created in epoch seconds
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     main_ticket_id = db.Column(db.Integer, db.ForeignKey('ticket.id'))

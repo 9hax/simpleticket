@@ -146,8 +146,7 @@ def about():
 
 # the login page. this allows a user to authenticate to enable them to create and edit tickets.
 @app.route('/login', methods=['GET', 'POST'])
-def login():
-    message = None
+def login(message = None):
     if request.method == 'POST':
         username = str.lower(request.form["login"]) # make sure the login string is only in lowercase
         password = request.form["password"]
@@ -173,7 +172,12 @@ def resetPW():
     message = None
     if request.method == 'POST':
         message = lang['password-reset-form-message']
-        user.resetpw(request.form["email"])
+        userobj = m.User.query.filter_by(email = request.form["email"]).first()
+        if userobj == None:
+            message = lang['user-not-found-error']
+            return render_template('user-password-reset.html', message = message)
+        user.resetpw(userobj)
+        return render_template('user-password-reset.html', message = message)
     return render_template('user-password-reset.html', message = message)
 
 @app.route('/add-admin', methods=['GET', 'POST'])

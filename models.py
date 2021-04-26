@@ -32,6 +32,7 @@ class TicketReply(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     text = db.Column(db.Text, unique=False, nullable=False)
     media = db.Column(db.Text, unique=False, nullable=True)
+    isNote = db.Column(db.Boolean, unique=False, nullable = False, default=False)
     time = db.Column(db.Integer, unique = False) # The time the ticket reply was created in epoch seconds
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     main_ticket_id = db.Column(db.Integer, db.ForeignKey('ticket.id'))

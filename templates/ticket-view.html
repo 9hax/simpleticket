@@ -39,37 +39,37 @@
     <p>{{ticket.text}}</p>
 </div>
 {% for ticketreply in replies %} {% if (ticketreply.isNote and current_user.highPermissionLevel) or (not ticketreply.isNote)%}
-<div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col" , style="width: 100%;">
-    <div class="aux" style="float: left; {{'background-color: burlywood;' if ticketreply.isNote }} ">
+<div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col" , style="width: 100%; ">
+    <div class="aux" style="float: left;{{'background: burlywood;' if ticketreply.isNote }} ">
         {% if ticketreply.isNote %} {{lang["ticket-note-by"] + " " + ticketreply.created_by.fullname}} {% else %} {{lang["ticket-reply-by"] + " " + ticketreply.created_by.fullname}} {% endif %}
     </div>
     <hr />
     <p>{{ticketreply.text}}</p>
 </div>
 {% endif %} {% endfor %}
-<div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col " style="width: 100% ">
-    <form action="{{url_for( 'createTicketReply', ticketid=ticket.id)}} " method="POST ">
+<div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col" style="width: 100%">
+    <form action="{{url_for( 'createTicketReply', ticketid=ticket.id)}}" method="POST">
         {{lang["write-reply"]}}</br>
         <div class="mdl-textfield mdl-js-textfield ">
-            <textarea class="mdl-textfield__input " type="text " rows="3 " id="reply-textbox " name="reply-text " style="width: 100% "></textarea>
-            <label class="mdl-textfield__label " for="reply-textbox ">{{lang["ticket-text-placeholder"]}}</label
+            <textarea class="mdl-textfield__input " type="text" rows="3 " id="reply-textbox" name="reply-text" style="width: 100% "></textarea>
+            <label class="mdl-textfield__label " for="reply-textbox">{{lang["ticket-text-placeholder"]}}</label
       >
     </div>
     {% if g.current_user.highPermissionLevel %}
     <button
-      type="submit "
+      type="submit"
       class="mdl-cell mdl-cell--12-col mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--white "
-      name="action "
-      value="SaveNote "
+      name="action"
+      value="SaveNote"
     >
       {{lang["save-as-note"]}}
   	</button>
     {% endif %}
     <button
-      type="submit "
+      type="submit"
       class="mdl-cell mdl-cell--12-col mdl-button mdl-button--raised mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--white "
-      name="action "
-      value="Save "
+      name="action"
+      value="Save"
     >
       {{lang["save"]}}
     </button>

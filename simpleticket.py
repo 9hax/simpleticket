@@ -134,12 +134,10 @@ def createTicketReply(ticketid):
         if request.method == 'POST':
             if request.form.get('action') == "SaveNote":
                 user.create_ticket_reply(request.form["reply-text"], None, g.current_user, ticketid, isNote=True)
-                print("Created Note")
             else:
                 user.create_ticket_reply(request.form["reply-text"], None, g.current_user, ticketid)
-                print("Created normal Reply")
-            return redirect(url_for('home'))
-        return render_template('ticket-create.html')
+            return redirect(url_for('viewTicket', ticketid = ticketid))
+        return redirect(url_for('viewTicket', ticketid = ticketid))
     else:
         abort(403)
 

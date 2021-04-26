@@ -49,10 +49,11 @@ def create_ticket(title, text, media, created_by, assigned_to):
     m.db.session.add(new_ticket)
     m.db.session.commit()
 
-def create_ticket_reply(text, media, created_by, main_ticket_id):
+def create_ticket_reply(text, media, created_by, main_ticket_id, isNote = False):
     new_ticket = m.TicketReply()
     new_ticket.text = text
     new_ticket.media = media
+    new_ticket.isNote = isNote
     new_ticket.time = time.time()
     new_ticket.created_by = created_by
     new_ticket.main_ticket_id = main_ticket_id

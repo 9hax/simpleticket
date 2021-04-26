@@ -54,6 +54,7 @@
     "ticket-time": "Time",
     "ticket-created-by": "Created by",
     "ticket-reply-by": "Reply by",
+    "ticket-note-by": "Note by",
     "ticket-text-placeholder": "Enter your ticket text here.",
     "not-assigned": "Not assigned",
     "assigned-to": "Assigned to",
@@ -62,5 +63,6 @@
     "fullname": "Full Name",
     "reply-text-placeholder": "Enter your reply text here.",
     "write-reply": "Create a new reply",
-    "save": "Save"
+    "save": "Save",
+    "save-as-note": "Save as Note"
 }

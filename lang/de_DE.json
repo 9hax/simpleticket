@@ -54,6 +54,7 @@
     "ticket-time": "Zeit",
     "ticket-created-by": "Erstellt von",
     "ticket-reply-by": "Antwort von",
+    "ticket-note-by": "Notiz von",
     "ticket-text-placeholder": "Geben Sie hier ihren Ticket-Text ein.",
     "not-assigned": "Nicht zugewiesen",
     "assigned-to": "Zugewiesen zu",
@@ -62,5 +63,6 @@
     "fullname": "Vollständiger Name",
     "reply-text-placeholder": "Antwort verfassen...",
     "write-reply": "Antwort erstellen",
-    "save": "Speichern"
+    "save": "Speichern",
+    "save-as-note": "Als Notiz speichern"
 }

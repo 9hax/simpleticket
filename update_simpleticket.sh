@@ -10,7 +10,7 @@ sudo service apache2 stop
 # make backup of the current system
 echo ${green}Creating backup...${reset}
 mkdir /opt/simpleticket_backups/$(date +"%d-%m-%Y")
-cp /opt/simpleticket /opt/simpleticket_backups/$(date +"%d-%m-%Y") -R
+cp /opt/simpleticket/* /opt/simpleticket_backups/$(date +"%d-%m-%Y") -R
 
 # Pull changes
 echo ${green}Pulling updates...${reset}

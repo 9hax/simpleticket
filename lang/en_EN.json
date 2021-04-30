@@ -50,7 +50,7 @@
     "ticket-status": "Status",
     "ticket-status-open": "Open",
     "ticket-status-closed": "Closed",
-    "ticket-status-assigned": "Assigned",
+    "ticket-status-assigned": "In Progress",
     "ticket-time": "Time",
     "ticket-created-by": "Created by",
     "ticket-reply-by": "Reply by",

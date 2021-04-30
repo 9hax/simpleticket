@@ -96,5 +96,4 @@ def hasValidReply(ticketid):
     for reply in ticketReplyList:
         if m.User.query.filter_by(id = reply.created_by_id).first().highPermissionLevel:
             return True
-        else:
-            return False
+    return False

@@ -23,7 +23,7 @@ app.config['SECRET_KEY'] = config.SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///simpleticket.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 m.db.init_app(app)
-Migrate(app, m.db)
+Migrate(app, m.db, render_as_batch=True)
 
 # make some variables available to the main script
 @app.before_request

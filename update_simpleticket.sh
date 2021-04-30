@@ -26,7 +26,7 @@ echo ${green}Running database migrations...${reset}
 flask db upgrade
 flask db migrate -m "SimpleTicket Update"
 
-# Copy config file from backup in case git decides to overwrite in during pull
+# Copy config file from backup in case git decides to overwrite it during pull
 cp /opt/simpleticket_backups/$(date +"%d-%m-%Y")/config.py /opt/simpleticket
 
 # Start apache2

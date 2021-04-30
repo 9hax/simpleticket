@@ -3,23 +3,11 @@
     <h2>{{ticket.title}}</h2>
     {{lang["ticket-created-by"] + " " + ticket.created_by.fullname}}
     <div class="aux" style="float: left">
-        <span class="mdl-chip ticket-status-chip" style="background: {{ 'lightcoral' if ticket.is_open and ticket.assigned_to_id==None else 'khaki' if ticket.is_open and ticket.assigned_to_id!=None else 'lightgreen'}}">
+        <span class="mdl-chip ticket-status-chip" style="background: {{ 'lightcoral' if ticket.is_open and not hasValidReply(ticket.id) else 'khaki' if ticket.is_open and hasValidReply(ticket.id) else 'lightgreen'}}">
       <span class="mdl-chip__text">
-        {{lang["ticket-status"]}}: {{lang["ticket-status-open"] if
-        ticket.is_open and ticket.assigned_to_id==None else
-        lang["ticket-status-assigned"] if ticket.is_open and
-        ticket.assigned_to_id!=None else lang["ticket-status-closed"]}} {% if
-        ticket.is_open %} {% if ticket.assigned_to_id==None %}
-        <span class="material-icons ticket-icon">error_outline</span> {% else %}
-        <span class="material-icons ticket-icon">pending</span> {% endif %} {% else %}
-        <span class="material-icons ticket-icon">check_circle</span> {% endif %}
+        {{ lang["ticket-status-open"] if ticket.is_open and not hasValidReply(ticket.id) else lang["ticket-status-assigned"] if ticket.is_open and hasValidReply(ticket.id) else lang["ticket-status-closed"]}}
+        <span class="material-icons ticket-icon">{{ 'error_outline' if ticket.is_open and not hasValidReply(ticket.id) else 'pending' if ticket.is_open and hasValidReply(ticket.id) else 'check_circle'}}</span>
         </span>
-        </span>
-        <span class="mdl-chip ticket-status-chip" style="margin-left: 10px; margin-right: 10px">
-      <span class="mdl-chip__text">
-        {{lang["not-assigned"] if ticket.assigned_to_id == None else
-        lang["assigned-to"]+" "+ticket.assigned-to.name}}
-      </span>
         </span>
         {% if g.current_user.id == ticket.created_by_id or g.current_user.highPermissionLevel %} {% if ticket.is_open %}
         <a href="{{ticket.id}}/close" style="text-decoration: none">

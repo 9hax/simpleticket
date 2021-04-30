@@ -90,3 +90,11 @@ def getTime(timestamp):
         return datetime.datetime.fromtimestamp(timestamp).strftime("%H:%M:%S, %m.%d.%Y")
     except:
         return "Invalid time"
+
+def hasValidReply(ticketid):
+    ticketReplyList = m.TicketReply.query.filter_by(main_ticket_id = ticketid).all()
+    for reply in ticketReplyList:
+        if m.User.query.filter_by(id = reply.created_by_id).first().highPermissionLevel:
+            return True
+        else:
+            return False

@@ -26,6 +26,17 @@ sudo git clone https://github.com/9hax/simpleticket /opt/simpleticket
 # make simpleticket directory accessible
 sudo chmod 777 /opt/simpleticket -R
 
+#####################################
+# Create folder for upgrade backups #
+#####################################
+echo ${green}Create backup folder${reset}
+
+# make the folder
+mkdir /opt/simpleticket_backups
+
+# make simpleticket_backups directory accessible
+sudo chmod 777 /opt/simpleticket_backups -R
+
 #######################
 # Python dependencies #
 #######################

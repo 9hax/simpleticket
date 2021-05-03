@@ -7,7 +7,13 @@ from flask_migrate import Migrate
 import sqlalchemy
 import models as m
 
-import config, json, user, git, os, time, datetime
+try: 
+    import userconfig as config
+except: 
+    import config
+
+
+import json, user, git, os, time, datetime
 
 # prepare language files
 

@@ -34,6 +34,8 @@ The install script can be run using this command:
 This will install apache2, git, python3 and some python3 libraries.
 It will also disable the default apache2 welcome page which runs on port 80 to stop it from showing up when not called with the correct domain.
 
+Please put your configuration into userconfig.py to make sure git doesnt mess with your configuration while updating.
+
 ## Usage
 
 Just open the Web interface at Port 80! 

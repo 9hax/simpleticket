@@ -4,3 +4,4 @@ migrations/versions/*
 !migrations/versions/.exists
 .vscode
 smtpconfig.py
+userconfig.py

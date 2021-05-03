@@ -1,5 +1,4 @@
 import bcrypt
-import config
 import smtpconfig
 import json
 import time
@@ -7,6 +6,11 @@ import datetime
 import random
 import string
 from simpleticket import m
+
+try:
+    import userconfig as config
+except:
+    import config
 
 # prepare language files
 

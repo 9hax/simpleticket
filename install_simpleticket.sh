@@ -37,6 +37,14 @@ mkdir /opt/simpleticket_backups
 # make simpleticket_backups directory accessible
 sudo chmod 777 /opt/simpleticket_backups -R
 
+##################################
+# Create User configuration File #
+##################################
+echo ${green}Create user configuration file${reset}
+
+# copy stock config file to userconfig.py. this is in te gitignore, so git should never touch it.
+cp /opt/simpleticket/config.py /opt/simpleticket/userconfig.py
+
 #######################
 # Python dependencies #
 #######################

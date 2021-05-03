@@ -32,3 +32,8 @@ SECRET_KEY = 'm-_2hz7kJL-oOHtwKkI5ew'
 
 # create-admin-user file path
 CREATE_ADMIN_FILE = "_CREATE_ADMIN_ALLOWED"
+
+# Custom Properties go here.
+# Reference the manual for more information on custom config properties.
+
+TIMEFORMAT = "%H:%M:%S, %d.%m.%Y"

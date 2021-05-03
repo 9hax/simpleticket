@@ -87,7 +87,7 @@ def sendmail(address, htmlcontent, subject):
 
 def getTime(timestamp):
     try:
-        return datetime.datetime.fromtimestamp(timestamp).strftime("%H:%M:%S, %m.%d.%Y")
+        return datetime.datetime.fromtimestamp(timestamp).strftime(config.TIMEFORMAT)
     except:
         return "Invalid time"
 

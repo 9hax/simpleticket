@@ -10,11 +10,11 @@ WARNING! THIS IS NOT YET READY FOR PRODUCTION ENVIRONMENTS AS VERY BASIC FEATURE
 
 ## TODOS
 
-Implement ticket notes (like replies but can only be seen by admins)
+Better password resets
 
-Implement search feature
+Better Ticket UI
 
-Fix ticket order in Index to make recently updated tickets appear on top
+Fix icon spacings in table
 
 ## Installation
 

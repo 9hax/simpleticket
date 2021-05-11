@@ -21,6 +21,18 @@
         {{lang["reopen-ticket"]}}
             </button>
         </a>
+        {% endif %} {% endif %} {% if g.current_user.highPermissionLevel %} {% if not ticket.hidden %}
+        <a href="{{ticket.id}}/hide" style="text-decoration: none">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+        {{lang["hide-ticket"]}}
+      	    </button>
+        </a>
+        {% else %}
+        <a href="{{ticket.id}}/unhide" style="text-decoration: none">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+        {{lang["unhide-ticket"]}}
+            </button>
+        </a>
         {% endif %} {% endif %}
     </div>
     <hr />

@@ -3,6 +3,10 @@ $(function() {
         "paging": false,
         "info": false
     });
+    $('#dataTable2').DataTable({
+        "paging": false,
+        "info": false
+    });
 });
 
 $('thead th').each(function(column) {

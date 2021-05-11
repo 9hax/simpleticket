@@ -11,7 +11,7 @@
                     <th class="mdl-data-table__cell--non-numeric sort-key">{{lang["ticket-created-by"]}}</th>
                 </tr>
             </thead>
-            {% for ticket in ticket_list %}
+            {% for ticket in ticket_list %} {% if not ticket.hidden %}
             <tr style="cursor: pointer" onclick="window.location='view/{{ticket.id}}'">
                 <td class="mdl-data-table__cell--non-numeric" style="background: {{ 'lightcoral' if ticket.is_open and not hasValidReply(ticket.id) else 'khaki' if ticket.is_open and hasValidReply(ticket.id) else 'lightgreen'}}">{{ lang["ticket-status-open"] if ticket.is_open and not hasValidReply(ticket.id) else lang["ticket-status-assigned"] if ticket.is_open and hasValidReply(ticket.id) else lang["ticket-status-closed"]}}
 
@@ -21,8 +21,34 @@
                 <td class="mdl-data-table__cell--non-numeric">{{getTime(ticket.time)}}</td>
                 <td class="mdl-data-table__cell--non-numeric">{{ticket.created_by.fullname}}</td>
             </tr>
-            {% endfor %}
+            {% endif %} {% endfor %}
         </table>
     </p>
+    {% if g.current_user.highPermissionLevel %}
+    <p>
+        {{lang["hidden-tickets"]}}
+        <table id="dataTable2" class="mdl-data-table mdl-js-data-table <!--mdl-data-table--selectable--> mdl-shadow--2dp" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric sort-key">{{lang["ticket-status"]}}</th>
+                    <th class="mdl-data-table__cell--non-numeric sort-key">{{lang["ticket-title"]}}</th>
+                    <th class="mdl-data-table__cell--non-numeric sort-key">{{lang["ticket-time"]}}</th>
+                    <th class="mdl-data-table__cell--non-numeric sort-key">{{lang["ticket-created-by"]}}</th>
+                </tr>
+            </thead>
+            {% for ticket in ticket_list %} {% if ticket.hidden %}
+            <tr style="cursor: pointer" onclick="window.location='view/{{ticket.id}}'">
+                <td class="mdl-data-table__cell--non-numeric" style="background: {{ 'lightcoral' if ticket.is_open and not hasValidReply(ticket.id) else 'khaki' if ticket.is_open and hasValidReply(ticket.id) else 'lightgreen'}}">{{ lang["ticket-status-open"] if ticket.is_open and not hasValidReply(ticket.id) else lang["ticket-status-assigned"] if ticket.is_open and hasValidReply(ticket.id) else lang["ticket-status-closed"]}}
+
+                    <span class="material-icons ticket-icon">{{ 'error_outline' if ticket.is_open and not hasValidReply(ticket.id) else 'pending' if ticket.is_open and hasValidReply(ticket.id) else 'check_circle'}}</span>
+                </td>
+                <td class="mdl-data-table__cell--non-numeric">{{ticket.title}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{getTime(ticket.time)}}</td>
+                <td class="mdl-data-table__cell--non-numeric">{{ticket.created_by.fullname}}</td>
+            </tr>
+            {% endif %} {% endfor %}
+        </table>
+    </p>
+    {% endif %}
 </div>
 {% endblock %}

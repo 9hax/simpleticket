@@ -135,6 +135,36 @@ def reopenTicket(ticketid):
     else:
         abort(403)
 
+@app.route('/view/<ticketid>/hide')
+def hideTicket(ticketid):
+    ticket = m.Ticket.query.filter_by(id = ticketid).first()
+    if ticket == None:
+        abort(404)
+    if "login" in session.keys() and session['login']:
+        if g.current_user.highPermissionLevel:
+            ticket.hidden = True
+            m.db.session.commit()
+            return redirect(url_for('viewTicket', ticketid = ticketid))
+        else:
+            abort(403)
+    else:
+        abort(403)
+
+@app.route('/view/<ticketid>/unhide')
+def unhideTicket(ticketid):
+    ticket = m.Ticket.query.filter_by(id = ticketid).first()
+    if ticket == None:
+        abort(404)
+    if "login" in session.keys() and session['login']:
+        if g.current_user.highPermissionLevel:
+            ticket.hidden = False
+            m.db.session.commit()
+            return redirect(url_for('viewTicket', ticketid = ticketid))
+        else:
+            abort(403)
+    else:
+        abort(403)
+
 @app.route('/view/<ticketid>/reply', methods=['POST'])
 def createTicketReply(ticketid):
     if "login" in session.keys() and session['login']:

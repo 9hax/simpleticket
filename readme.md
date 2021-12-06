@@ -49,7 +49,7 @@ TODO: Add sample SSL VirtualHost Configuration File and automatically copy it to
 
 To create an admin user, just visit /add-admin to open a signup form.
 
-For security, this is disabled. To enable, run ``touch /opt/simpleticket/_CREATE_ADMIN_ALLOWED`` . 
+For security, this is disabled by default. To enable it temporarily, run ``touch /opt/simpleticket/_CREATE_ADMIN_ALLOWED`` . 
 This path can be relatively changed in config.py.
 
 Please make sure to delete the _CREATE_ADMIN_ALLOWED file after adding all the administrator accounts you need, as leaving the file will enable everyone on the same network to create their own admin users without any authentication.

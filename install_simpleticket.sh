@@ -15,6 +15,10 @@ sudo apt install apache2 git nano -y
 sudo apt install python3 python3-pip -y
 sudo apt install libapache2-mod-wsgi-py3 -y
 
+# Create simpleticket user for the wsgi process
+sudo useradd -M simpleticket
+sudo usermod -L simpleticket
+
 ###############################
 # Clone GitHub Repository     #
 ###############################
@@ -25,6 +29,7 @@ sudo git clone https://github.com/9hax/simpleticket /opt/simpleticket
 
 # make simpleticket directory accessible
 sudo chmod 777 /opt/simpleticket -R
+sudo chown simpleticket /opt/simpleticket* -R
 
 #####################################
 # Create folder for upgrade backups #
@@ -67,10 +72,6 @@ sudo a2dissite 000-default.conf
 # Copy the simpleticket configuration file to the apache2 config directory
 sudo cp /opt/simpleticket/simpleticket.conf /etc/apache2/sites-available
 
-# Create simpleticket user for the wsgi process
-sudo useradd -M simpleticket
-sudo usermod -L simpleticket
-
 # Enable the site by linking to sites-enabled
 sudo a2ensite simpleticket.conf
 
@@ -86,6 +87,12 @@ echo ${green}Begin Flask init${reset}
 flask db upgrade
 flask db migrate -m "Initial installation"
 flask db upgrade
+
+# I'm sorry, I don't know why, I don't know how, but without this, the database sometimes ends up read-only.
+flask db migrate
+flask db upgrade
+flask db migrate
+flask db upgrade 
 
 #################
 # Start website #

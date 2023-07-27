@@ -20,16 +20,21 @@ sudo useradd -M simpleticket
 sudo usermod -L simpleticket
 
 ###############################
+# Prepare installation folder #
+###############################
+
+sudo chmod 777 /opt 
+
+###############################
 # Clone GitHub Repository     #
 ###############################
 echo ${green}Clone GitHub Repository${reset}
 
 # Clone the GitHub Repo to /opt/simpleticket
-sudo git clone https://github.com/9hax/simpleticket /opt/simpleticket
+sudo -u simpleticket git clone https://github.com/9hax/simpleticket /opt/simpleticket
 
 # make simpleticket directory accessible
-sudo chmod 777 /opt/simpleticket -R
-sudo chown simpleticket /opt/simpleticket* -R
+sudo chown simpleticket:simpleticket /opt/simpleticket* -R
 
 #####################################
 # Create folder for upgrade backups #
@@ -37,18 +42,15 @@ sudo chown simpleticket /opt/simpleticket* -R
 echo ${green}Create backup folder${reset}
 
 # make the folder
-mkdir /opt/simpleticket_backups
-
-# make simpleticket_backups directory accessible
-sudo chmod 777 /opt/simpleticket_backups -R
+sudo -u simpleticket mkdir /opt/simpleticket_backups
 
 ##################################
 # Create User configuration File #
 ##################################
 echo ${green}Create user configuration file${reset}
 
-# copy stock config file to userconfig.py. this is in te gitignore, so git should never touch it.
-cp /opt/simpleticket/config.py /opt/simpleticket/userconfig.py
+# copy stock config file to userconfig.py. this is in the gitignore, so git should never touch it.
+sudo -u simpleticket cp /opt/simpleticket/config.py /opt/simpleticket/userconfig.py
 
 #######################
 # Python dependencies #
@@ -59,7 +61,7 @@ echo ${green}Python dependencies setup${reset}
 cd /opt/simpleticket
 
 # install current requirements using pip3
-pip3 install -r requirements.txt --break-system-packages
+sudo -u simpleticket pip3 install -r requirements.txt --break-system-packages
 
 ###############################
 # Begin apache2 configuration #
@@ -84,15 +86,15 @@ sudo service apache2 stop
 echo ${green}Begin Flask init${reset}
 
 # Start database migrations
-flask db upgrade
-flask db migrate -m "Initial installation"
-flask db upgrade
+sudo -u simpleticket flask db upgrade
+sudo -u simpleticket flask db migrate -m "Initial installation"
+sudo -u simpleticket flask db upgrade
 
 # I'm sorry, I don't know why, I don't know how, but without this, the database sometimes ends up read-only.
-flask db migrate
-flask db upgrade
-flask db migrate
-flask db upgrade 
+sudo -u simpleticket flask db migrate
+sudo -u simpleticket flask db upgrade
+sudo -u simpleticket flask db migrate
+sudo -u simpleticket flask db upgrade 
 
 #################
 # Start website #
@@ -102,4 +104,4 @@ echo ${green}Start website${reset}
 # Start apache2
 sudo service apache2 start
 
-echo ${green}You can set up SimpleTicket with the file /opt/simpleticket/config.py and smtpsetup.py.${reset}
+echo ${green}You can set up SimpleTicket with the file /opt/simpleticket/userconfig.py and smtpsetup.py.${reset}

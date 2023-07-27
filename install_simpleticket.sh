@@ -54,7 +54,7 @@ echo ${green}Python dependencies setup${reset}
 cd /opt/simpleticket
 
 # install current requirements using pip3
-pip3 install -r requirements.txt
+pip3 --break-system-packages install -r requirements.txt
 
 ###############################
 # Begin apache2 configuration #

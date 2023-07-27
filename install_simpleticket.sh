@@ -61,7 +61,7 @@ echo ${green}Python dependencies setup${reset}
 cd /opt/simpleticket
 
 # install current requirements using pip3
-pip3 install -r requirements.txt --break-system-packages
+sudo -u simpleticket python3 -m pip3 install -r requirements.txt --break-system-packages
 
 ###############################
 # Begin apache2 configuration #
@@ -86,15 +86,9 @@ sudo service apache2 stop
 echo ${green}Begin Flask init${reset}
 
 # Start database migrations
-sudo -u simpleticket flask db upgrade
-sudo -u simpleticket flask db migrate -m "Initial installation"
-sudo -u simpleticket flask db upgrade
-
-# I'm sorry, I don't know why, I don't know how, but without this, the database sometimes ends up read-only.
-sudo -u simpleticket flask db migrate
-sudo -u simpleticket flask db upgrade
-sudo -u simpleticket flask db migrate
-sudo -u simpleticket flask db upgrade 
+sudo -u simpleticket python3 -m flask db upgrade
+sudo -u simpleticket python3 -m flask db migrate -m "Initial installation"
+sudo -u simpleticket python3 -m flask db upgrade
 
 #################
 # Start website #

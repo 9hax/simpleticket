@@ -27,7 +27,7 @@ QUICK FIX: Run ``flask db upgrade && flask db migrate && flask db upgrade`` in /
 The default path for the installation is /opt/simpleticket and cannot be changed for now
 (If you implement this, please create a pull request and let me know!).
 
-The install script can be run using this command:
+The install script can be run using this command: (sudo and curl are required!)
 
     curl -s https://raw.githubusercontent.com/9hax/simpleticket/main/install_simpleticket.sh | sudo bash
 

@@ -16,7 +16,7 @@ sudo apt install python3 python3-pip -y
 sudo apt install libapache2-mod-wsgi-py3 -y
 
 # Create simpleticket user for the wsgi process
-sudo useradd -M simpleticket
+sudo useradd simpleticket
 sudo usermod -L simpleticket
 
 ###############################

@@ -87,32 +87,6 @@ flask db upgrade
 flask db migrate -m "Initial installation"
 flask db upgrade
 
-####################
-# Begin SMTP Setup #
-####################
-
-read -p "Do you want to set up SMTP for password reset and Email Notifications now? (n)" -n 1 -r REPLY
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
- read -p "Please put in the SMTP Server that the EMail Address is stored on. > " SMTPSERVER
- echo
- read -p "Please put in the Port number that the SMTP Server is running on. > " SMTPPORTNUMBER
- echo
- read -p "Please put in the Email Address that you want simpleticket to send EMmail from. > " SMTPUSER
- echo
- echo "Please put in the Password of the User Account that you want to send email from. > "
- read -s SMTPKEY
- SMTPSERVER=
- sed -i "s,SMTP_SERVER = None,SMTP_SERVER = $SMTPSERVER," smtpconfig.py
- sed -i "s,SMTP_PORT = None,SMTP_PORT = $SMTPPORTNUMBER," smtpconfig.py
- sed -i "s,SMTP_USER = None,SMTP_USER = $SMTPUSER," smtpconfig.py
- sed -i "s,SMTP_PASSWORD = None,SMTP_PASSWORD = $SMTPKEY," smtpconfig.py
-fi
-
-echo "You can repeat SMTP-Setup by editing the variables in smtpconfig.py manually."
-
-
 #################
 # Start website #
 #################
@@ -121,4 +95,4 @@ echo ${green}Start website${reset}
 # Start apache2
 sudo service apache2 start
 
-echo ${green}You can set up SimpleTicket with the file /opt/simpleticket/config.py${reset}
+echo ${green}You can set up SimpleTicket with the file /opt/simpleticket/config.py and smtpsetup.py.${reset}

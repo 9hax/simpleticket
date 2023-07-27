@@ -59,13 +59,17 @@ pip3 install -r requirements.txt
 ###############################
 # Begin apache2 configuration #
 ###############################
-echo ${green}Begin apache2 cofniguration${reset}
+echo ${green}Begin apache2 configuration${reset}
 
 # Disable the default apache2 site
 sudo a2dissite 000-default.conf
 
 # Copy the simpleticket configuration file to the apache2 config directory
 sudo cp /opt/simpleticket/simpleticket.conf /etc/apache2/sites-available
+
+# Create simpleticket user for the wsgi process
+sudo useradd -M simpleticket
+sudo usermod -L simpleticket
 
 # Enable the site by linking to sites-enabled
 sudo a2ensite simpleticket.conf

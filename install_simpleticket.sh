@@ -91,7 +91,7 @@ flask db upgrade
 # Begin SMTP Setup #
 ####################
 
-read -p "Do you want to set up SMTP for password reset and Email Notifications now? (n)" -n 1 -r
+read -p "Do you want to set up SMTP for password reset and Email Notifications now? (n)" -n 1 -r REPLY
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then

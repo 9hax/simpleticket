@@ -4,8 +4,8 @@
 <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
   <p>
     {{lang["about-text"] | safe}}
-    <br>
-    {{lang["version"] + " " + stversion}}
+    {% if g.current_user.highPermissionLevel %}<br>
+    {{lang["version"] + " " + stversion}} {% endif %}
   </p>
   <a href="http://github.com/9hax/simpleticket">
     <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
